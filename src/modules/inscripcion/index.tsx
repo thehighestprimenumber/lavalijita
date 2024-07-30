@@ -48,7 +48,7 @@ export default function Index() {
   if (!etiEvent?.id) {
     return (
       <Typography variant="h5" color="secondary" align="center" my={4}>
-        El pŕoximo ETI viene pronto!
+        {/*El pŕoximo ETI viene pronto!*/}
       </Typography>
     );
   } else

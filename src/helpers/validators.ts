@@ -21,5 +21,6 @@ export const isUserDataComplete = (userData: any): userData is RequiredUserData 
   const missingAttributes = Object.keys(schema)
     .filter((key) => userData[key] === undefined)
     .map((key) => key as keyof UserPersonalInfo);
+  console.log('missingAttributes', missingAttributes);
   return missingAttributes.length === 0;
 };

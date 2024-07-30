@@ -74,7 +74,7 @@ export default function Profile() {
         then: string().nullable(true).required('Este campo no puede estar vacío')
       }),
     bank: string().required(
-      'Este campo no puede estar vacío. Es necesario para gestionar la devolución de tu combo y para resolver problemas con el pago'
+      'Este campo no puede estar vacío. Es necesario para gestionar la devolución de tu entrada y para resolver problemas con el pago'
     ),
     disability: string()
   });
@@ -139,7 +139,7 @@ export default function Profile() {
         createOrUpdateDoc('users', userData, userId),
         createOrUpdateDoc('banks', { userId, bank }, userId)
       ]);
-      navigate(ROUTES.USER_HOME);
+      navigate(ROUTES.SIGNUP);
     } catch (error) {
       console.error(error);
       setSubmitting(false);

@@ -7,15 +7,7 @@ import Cronograma from './cronograma/Cronograma';
 function Index() {
   const { etiEvent } = useContext(EtiEventContext);
 
-  return (
-    <React.Fragment>
-      <Portada />
-      {etiEvent?.image && (
-        <img src={etiEvent.image} alt="Proximmo ETI" width="100%" height="100%" />
-      )}
-      {etiEvent?.id && <Cronograma />}
-    </React.Fragment>
-  );
+  return <React.Fragment>{etiEvent?.id && <Cronograma />}</React.Fragment>;
 }
 
 export default Index;

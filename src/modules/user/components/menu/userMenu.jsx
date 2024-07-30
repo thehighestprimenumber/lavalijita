@@ -10,37 +10,9 @@ import { isAdminOfEvent, isSuperAdmin } from '../../../../helpers/firestore/user
 import { EtiEventContext } from '../../../../helpers/EtiEventContext';
 
 export function UserMenu() {
-  const { t } = useTranslation(SCOPES.MODULES.USER, { useSuspense: false });
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
-  const { pathname: currentRoute } = useLocation();
-  const isCurrentRoute = (route) => currentRoute === route;
-  const getStyles = (route) => [styles.item, isCurrentRoute(route) && { ...styles.selectedItem }];
-  const { etiEvent } = useContext(EtiEventContext);
-
   return (
     <>
-      <Box sx={styles.container}>
-        <Button sx={getStyles(ROUTES.PROFILE)} onClick={() => navigate(ROUTES.PROFILE)}>
-          {t('myProfile')}
-        </Button>
-        <Button sx={getStyles(ROUTES.SIGNUP)} onClick={() => navigate(ROUTES.SIGNUP)}>
-          {t('signup')}
-        </Button>
-        <Button sx={getStyles(ROUTES.SIGNUPS)} onClick={() => navigate(ROUTES.SIGNUPS)}>
-          {t('signupList')}
-        </Button>
-        {isAdminOfEvent(user, etiEvent?.id) ? (
-          <Button sx={getStyles(ROUTES.SIGNUPS)} onClick={() => navigate(ROUTES.ATTENDANCE)}>
-            {t('attendance')}
-          </Button>
-        ) : null}
-        {isSuperAdmin(user) ? (
-          <Button sx={getStyles(ROUTES.SUPERADMIN)} onClick={() => navigate(ROUTES.SUPERADMIN)}>
-            {t('superadmin')}
-          </Button>
-        ) : null}
-      </Box>
+      <Box sx={styles.container}></Box>
     </>
   );
 }

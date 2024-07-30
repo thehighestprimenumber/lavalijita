@@ -110,22 +110,6 @@ export function SignupForm() {
                   textFieldProps={{ fullWidth: true }}
                 />
               </Grid>
-              <Grid item md={4} sm={4} xs={12}>
-                <Field
-                  component={Select}
-                  id="helpWith"
-                  name="helpWith"
-                  labelId="helpwith-label"
-                  label={t('helpWith')}
-                  formControl={{ fullWidth: true }}
-                >
-                  {Object.values(SignupHelpWith).map((help) => (
-                    <MenuItem key={help} value={help}>
-                      {t(help)}
-                    </MenuItem>
-                  ))}
-                </Field>
-              </Grid>
               <Grid item xs={12}>
                 <Typography sx={{ mb: 1 }}>{t('whereAreYouComingFrom')}</Typography>
                 <LocationPicker

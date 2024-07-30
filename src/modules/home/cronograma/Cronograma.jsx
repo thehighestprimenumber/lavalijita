@@ -45,11 +45,6 @@ function Cronograma() {
             direction="column"
             align="center"
           >
-            <Grid item>
-              <Typography variant="h4" marked="center" component="h2">
-                Cronograma ETIano
-              </Typography>
-            </Grid>
             <Grid item mt={3} px={5}>
               {etiEvent?.locations.map(({ name, link }) => (
                 <Typography variant="h6" key={name}>
@@ -59,7 +54,7 @@ function Cronograma() {
                   </Link>
                 </Typography>
               ))}
-              <Grid container spacing={3} px={5} mt={3}>
+              <Box>
                 {etiEvent?.schedule.map(({ title, activities }, index) => (
                   <Grid item key={`cronograma_${index}`} xs={12} md={4}>
                     <Paper sx={{ padding: '24px', height: '100%' }}>
@@ -76,10 +71,10 @@ function Cronograma() {
                     </Paper>
                   </Grid>
                 ))}
-              </Grid>
+              </Box>
             </Grid>
             <Grid item>
-              <Button color="secondary" size="large" variant="contained" href={ROUTES.USER_HOME}>
+              <Button color="secondary" size="large" variant="contained" href={ROUTES.SIGNUP}>
                 {t('signUp').toUpperCase()}
               </Button>
             </Grid>

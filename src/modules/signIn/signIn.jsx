@@ -54,7 +54,7 @@ function SignInScreen() {
       </div>
     );
   }
-  return <Navigate to={ROUTES.USER_HOME} />;
+  return <Navigate to={ROUTES.SIGNUP} />;
 }
 
 export default SignInScreen;

@@ -6,7 +6,6 @@ import React, { Suspense, useEffect, useState } from 'react';
 
 import withRoot from './components/withRoot';
 import EtiAppBar from './components/EtiAppBar';
-import AppFooter from './components/AppFooter';
 import { UserContext } from './helpers/UserContext';
 import { NotificationContext } from './helpers/NotificationContext';
 import withUserMenu from './components/withUserMenu';
@@ -15,19 +14,6 @@ import { CircularProgress } from '@mui/material';
 import { EtiEventContext } from './helpers/EtiEventContext';
 import { getFutureEti } from './helpers/firestore/events';
 
-const HistoriaEti = React.lazy(() => import('./modules/home/historia-del-ETI/HistoriaEti'));
-const ManifiestoETiano = React.lazy(() =>
-  import('./modules/home/manifiesto-etiano/ManifistoEtiano')
-);
-const ComisionGeneroContact = React.lazy(() =>
-  import('./modules/home/comision-de-genero/ComisionGeneroContact')
-);
-const ComisionGeneroProtocol = React.lazy(() =>
-  import('./modules/home/comision-de-genero/ComisionGeneroProtocol')
-);
-const ComisionGeneroWho = React.lazy(() =>
-  import('./modules/home/comision-de-genero/comisionGeneroWho')
-);
 const Inscripcion = React.lazy(() => import('./modules/inscripcion/index'));
 const SignupList = React.lazy(() => import('./modules/inscripcion/SignupList'));
 const Receipt = React.lazy(() => import('./modules/inscripcion/Receipt'));
@@ -37,7 +23,6 @@ const EventsList = React.lazy(() => import('./modules/superAdmin/events/EventsLi
 const SentMailList = React.lazy(() => import('./modules/superAdmin/sentMail/SentMailList'));
 
 const Profile = React.lazy(() => import('./modules/user/profile'));
-const UserHome = React.lazy(() => import('./modules/user/index'));
 const Home = React.lazy(() => import('./modules/home/Home'));
 const Bank = React.lazy(() => import('./modules/user/profile/bank'));
 const EventForm = React.lazy(() => import('./modules/superAdmin/events/EventForm'));
@@ -63,8 +48,6 @@ export const ROUTES = {
   EVENTS: '/events',
   SUPERADMIN: '/super-admin',
   PROFILE: '/user/profile',
-  USER: '/user',
-  USER_HOME: '/user',
   SIGN_IN: '/sign-in',
   SIGNUP: '/inscripcion',
   SIGNUPS: '/lista-inscriptos',
@@ -77,14 +60,7 @@ export const ROUTES = {
   SENT_MAILS: '/sent-mails'
 };
 
-export const PRIVATE_ROUTES = [
-  ROUTES.PROFILE,
-  ROUTES.USER,
-  ROUTES.USER_HOME,
-  ROUTES.SIGNUP,
-  ROUTES.SIGNUPS,
-  ROUTES.ATTENDANCE
-];
+export const PRIVATE_ROUTES = [ROUTES.PROFILE, ROUTES.SIGNUP, ROUTES.SIGNUPS, ROUTES.ATTENDANCE];
 
 function App() {
   const [user, setUser] = useState({ user: {} });
@@ -133,19 +109,6 @@ function App() {
               }
             >
               <Routes>
-                <Route path="historia-del-eti" element={<HistoriaEti />} exact />
-                <Route path="manifiesto-etiano" element={<ManifiestoETiano />} exact />
-                <Route
-                  path="comision-de-genero-contact"
-                  element={<ComisionGeneroContact />}
-                  exact
-                />
-                <Route
-                  path="comision-de-genero-protocol"
-                  element={<ComisionGeneroProtocol />}
-                  exact
-                />
-                <Route path="comision-de-genero-who" element={<ComisionGeneroWho />} exact />
                 <Route path={ROUTES.SIGNUP} element={withUserMenu(Inscripcion)()} exact />
                 <Route path={ROUTES.SIGNUPS} element={withUserMenu(SignupList)()} exact />
                 <Route
@@ -168,7 +131,6 @@ function App() {
                 />
                 <Route path={`${ROUTES.SUPERADMIN}${ROUTES.EVENTS}/:id`} element={<EventForm />} />
                 <Route path={`${ROUTES.SUPERADMIN}${ROUTES.ROLES}`} element={<RolesList />} />
-                <Route path={ROUTES.USER} element={withUserMenu(UserHome)()} />
                 <Route path={`${ROUTES.BANKS}/:id`} element={<Bank />} />
                 <Route path={ROUTES.PROFILE} element={withUserMenu(Profile)()} />
                 <Route path={ROUTES.HOME} element={<Home />} />
@@ -183,7 +145,7 @@ function App() {
                 <Route path={ROUTES.INSTRUCTIONS} element={<Instructions />} />
               </Routes>
             </Suspense>
-            <AppFooter />
+            {/*<AppFooter />*/}
           </NotificationContext.Provider>
         </UserContext.Provider>
       </EtiEventContext.Provider>
